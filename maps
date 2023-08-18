@@ -1,0 +1,34 @@
+import time
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+
+driver = webdriver.Chrome()
+url = r"https://www.google.com/maps/@13.1923968,77.676544,12z?entry=ttu"
+
+driver.get(url)
+driver.maximize_window()
+time.sleep(5)
+def search_place():
+    driver.find_element(By.XPATH ,'//div[@class="eYqqWd vF7Cdb"]').click()
+    time.sleep(3)
+search_place()
+
+def destination():
+    driver.find_element(By.XPATH, '/html/body/div[3]/div[8]/div[3]/div[1]/div[2]/div/div[3]/div[1]/div[1]/div[2]/div[1]/div/input').send_keys('hebbla')
+    time.sleep(3)
+    driver.find_element(By.XPATH,'/html/body/div[3]/div[8]/div[3]/div[1]/div[2]/div/div[3]/div[1]/div[2]/div[2]/div[1]/div/input').send_keys('yelahanka')
+    time.sleep(5)
+    driver.find_element(By.XPATH,'/html/body/div[3]/div[9]/div[3]/div[1]/div[2]/div/div[2]/div/div/div/div[2]/button/img').click()
+    time.sleep(5)
+    distance = driver.find_element(By.XPATH,"/html/body/div[3]/div[9]/div[9]/div/div/div[1]/div[2]/div/div[1]/div/div/div[4]/div[1]/div[1]/div/div[1]/div[2]/div")
+    Time = driver.find_element(By.XPATH,'/html/body/div[3]/div[9]/div[9]/div/div/div[1]/div[2]/div/div[1]/div/div/div[4]/div/div[1]/div/div[1]/div[1]')
+
+    print('Distance:', distance.text)
+    print('TIME :', Time.text)
+    driver.back()
+    time.sleep(10)
+
+destination()
+
